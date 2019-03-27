@@ -43,7 +43,7 @@
 	            echo "Failed: " . $e;
 	        }
 
-	        echo "<span class='alt alt-success'><h3>Your're registered!</h3></span>";
+	        echo "<span class='alt alt-success'><h3>$name registered!</h3></span>";
 	    }
 	    ?>
 		<form method="post" action="index.php" >
