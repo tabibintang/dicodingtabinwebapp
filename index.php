@@ -82,15 +82,18 @@
 	      	<?php 
 	      	$sql_select = "SELECT * FROM users";
             $stmt = $conn->query($sql_select);
-            $user = $stmt->fetchAll(); 
-            if(count($user) > 0) {?>
-	        <tr>
-	          <td><?php echo $user['name'] ?></td>
-	          <td><?php echo $user['email'] ?></td>
-	          <td><?php echo $user['birthdate'] ?></td>
-	          <td><?php echo $user['jobposition'] ?></td>
-	        </tr>
-	        <?php } ?>
+            $users = $stmt->fetchAll(); 
+            if(count($users) > 0) {
+	            foreach($users as $user) {?>
+			        <tr>
+			          <td><?php echo $user['name'] ?></td>
+			          <td><?php echo $user['email'] ?></td>
+			          <td><?php echo $user['birthdate'] ?></td>
+			          <td><?php echo $user['jobposition'] ?></td>
+			        </tr>
+		        <?php 
+		    	}
+		    } ?>
 	      </tbody>
 	    </table>
 	</div>
