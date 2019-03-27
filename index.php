@@ -76,6 +76,7 @@
 				<th data-field="E-Mail" data-sortable="true">E-Mail</th>
 				<th data-field="Birthdate" data-sortable="true">Birthdate</th>
 				<th data-field="Job Position" data-sortable="true">Job Position</th>
+				<th data-field="Added" data-sortable="true">Added</th>
 	        </tr>
 	      </thead>
 	      <tbody>
@@ -90,6 +91,7 @@
 			          <td><?php echo $user['email'] ?></td>
 			          <td><?php echo $user['birthdate'] ?></td>
 			          <td><?php echo $user['jobposition'] ?></td>
+			          <td><?php echo date_format($user['createddate'],"Y-m-d") ?></td>
 			        </tr>
 		        <?php 
 		    	}
