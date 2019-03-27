@@ -91,7 +91,7 @@
 			          <td><?php echo $user['email'] ?></td>
 			          <td><?php echo $user['birthdate'] ?></td>
 			          <td><?php echo $user['jobposition'] ?></td>
-			          <td><?php echo date_format($user['createddate'],"Y-m-d") ?></td>
+			          <td><?php echo $user['createddate'] ?></td>
 			        </tr>
 		        <?php 
 		    	}
