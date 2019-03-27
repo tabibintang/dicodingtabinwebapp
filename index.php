@@ -72,22 +72,25 @@
 		  data-sortable="true">
 	      <thead>
 	        <tr>
-	    		<th data-field="id" data-sortable="true">ID</th>
-				<th data-field="name" data-sortable="true">Item Name</th>
-				<th data-field="price" data-sortable="true">Item Price</th>
+	    		<th data-field="Name" data-sortable="true">Name</th>
+				<th data-field="E-Mail" data-sortable="true">E-Mail</th>
+				<th data-field="Birthdate" data-sortable="true">Birthdate</th>
+				<th data-field="Job Position" data-sortable="true">Job Position</th>
 	        </tr>
 	      </thead>
 	      <tbody>
+	      	<?php 
+	      	$sql_select = "SELECT * FROM users";
+            $stmt = $conn->query($sql_select);
+            $user = $stmt->fetchAll(); 
+            if(count($user) > 0) {?>
 	        <tr>
-	          <td>1</td>
-	          <td>Item 1</td>
-	          <td>$1</td>
+	          <td><?php echo $user['name'] ?></td>
+	          <td><?php echo $user['email'] ?></td>
+	          <td><?php echo $user['birthdate'] ?></td>
+	          <td><?php echo $user['jobposition'] ?></td>
 	        </tr>
-	        <tr>
-	          <td>2</td>
-	          <td>Item 2</td>
-	          <td>$2</td>
-	        </tr>
+	        <?php } ?>
 	      </tbody>
 	    </table>
 	</div>
