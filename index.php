@@ -10,6 +10,8 @@
 	<div class="col-md-12">
 		<h1>Data User</h1>
 		<?php
+		date_default_timezone_set("Asia/Bangkok");
+
 	    $host = "dicodingtabinwebappserver.database.windows.net";
 	    $user = "dicodingtabin";
 	    $pass = "B1nt4ngTBP!";
