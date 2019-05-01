@@ -152,7 +152,7 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 			          	<textarea id="responseTextArea<?php echo $user['id_user'] ?>" class="UIInput" style="width:580px; height:400px;"></textarea>
 
 			          	<?php echo"<script type='text/javascript'>
-			          		processImage(".$user['id_user'].",".$avatarurl.");
+			          		ngeAlert(".$user['id_user'].",".$avatarurl.");
 			          	</script>";
 			          	?>
 			          </td>
@@ -169,6 +169,9 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
     <script src="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.js"></script>
 
 	<script type="text/javascript">
+	function ngeAlert(_idUser, _Url){
+		alert(_Url);
+	}
     function processImage(_idUser, _Url) {
         // **********************************************
         // *** Update or verify the following values. ***
