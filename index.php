@@ -15,7 +15,7 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.css">
 	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
-	
+
 	<script type="text/javascript">
     function processImage(_idUser, _Url) {
         // **********************************************
@@ -213,11 +213,13 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 			          <td><?php echo $user['blockblob'] ?></td>
 			          <td><img style="width: 200px " src="<?php echo $avatarurl ?>"></td>
 			          <td>
+			          	<textarea id="responseTextArea<?php echo $user['id_user'] ?>" class="UIInput" style="width:580px; height:400px;"></textarea>
+			          	
 			          	<?php echo"<script type='text/javascript'>
 			          		processImage(".$user['id_user'].",".$avatarurl.");
 			          	</script>";
 			          	?>
-			          	<textarea id="responseTextArea<?php echo $user['id_user'] ?>" class="UIInput" style="width:580px; height:400px;"></textarea></td>
+			          </td>
 			        </tr>
 		        <?php 
 		    	}
