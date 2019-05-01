@@ -146,7 +146,7 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 			          <td><?php echo $user['jobposition'] ?></td>
 			          <td><?php echo $user['createddate'] ?></td>
 			          <td><?php echo $user['blockblob'] ?></td>
-			          <td><img src="<?php echo $avatarurl ?>"></td>
+			          <td><img style="width: 200px " src="<?php echo $avatarurl ?>"></td>
 			          <td></td>
 			        </tr>
 		        <?php 
