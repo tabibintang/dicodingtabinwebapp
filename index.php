@@ -15,6 +15,70 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 	<link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.14.2/dist/bootstrap-table.min.css">
 	<script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+	<script type="text/javascript">
+    function processImage(_idUser, _Url) {
+        // **********************************************
+        // *** Update or verify the following values. ***
+        // **********************************************
+ 
+        // Replace <Subscription Key> with your valid subscription key.
+        var subscriptionKey = "0727b71b292b44bbaeb76e4262577e57";
+ 
+        // You must use the same Azure region in your REST API method as you used to
+        // get your subscription keys. For example, if you got your subscription keys
+        // from the West US region, replace "westcentralus" in the URL
+        // below with "westus".
+        //
+        // Free trial subscription keys are generated in the "westus" region.
+        // If you use a free trial subscription key, you shouldn't need to change
+        // this region.
+        var uriBase =
+            "https://southeastasia.api.cognitive.microsoft.com/vision/v2.0/analyze";
+ 
+        // Request parameters.
+        var params = {
+            "visualFeatures": "Categories,Description,Color",
+            "details": "",
+            "language": "en",
+        };
+ 
+        // Display the image.
+        //var sourceImageUrl = document.getElementById("inputImage").value;
+        var sourceImageUrl = _Url;
+        document.querySelector("#sourceImage").src = sourceImageUrl;
+ 
+        // Make the REST API call.
+        $.ajax({
+            url: uriBase + "?" + $.param(params),
+ 
+            // Request headers.
+            beforeSend: function(xhrObj){
+                xhrObj.setRequestHeader("Content-Type","application/json");
+                xhrObj.setRequestHeader(
+                    "Ocp-Apim-Subscription-Key", subscriptionKey);
+            },
+ 
+            type: "POST",
+ 
+            // Request body.
+            data: '{"url": ' + '"' + sourceImageUrl + '"}',
+        })
+ 
+        .done(function(data) {
+            // Show formatted JSON on webpage.
+            $("#responseTextArea"+_idUser).val(JSON.stringify(data, null, 2));
+        })
+ 
+        .fail(function(jqXHR, textStatus, errorThrown) {
+            // Display error message.
+            var errorString = (errorThrown === "") ? "Error. " :
+                errorThrown + " (" + jqXHR.status + "): ";
+            errorString += (jqXHR.responseText === "") ? "" :
+                jQuery.parseJSON(jqXHR.responseText).message;
+            alert(errorString);
+        });
+    };
+</script>
 </head>
 <body>
 	<div class="col-md-12">
@@ -147,7 +211,11 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 			          <td><?php echo $user['createddate'] ?></td>
 			          <td><?php echo $user['blockblob'] ?></td>
 			          <td><img style="width: 200px " src="<?php echo $avatarurl ?>"></td>
-			          <td></td>
+			          <td>
+			          	<script type="text/javascript">
+			          		processImage(<?php echo $user['id_user'] ?>,<?php echo $avatarurl ?>);
+			          	</script>
+			          	<textarea id="responseTextArea<?php echo $user['id_user'] ?>" class="UIInput" style="width:580px; height:400px;"></textarea></td>
 			        </tr>
 		        <?php 
 		    	}
