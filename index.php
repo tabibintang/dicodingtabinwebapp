@@ -115,6 +115,44 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 		</form>
 
 		<hr>
+		<?php
+		try{
+			$listBlobsOptions = new ListBlobsOptions();
+	        $listBlobsOptions->setPrefix("sleep");
+	        do{
+	            $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
+	            foreach ($result->getBlobs() as $blob)
+	            {
+	                echo $blob->getName().": ".$blob->getUrl()."<br />";
+	            }
+	        
+	            $listBlobsOptions->setContinuationToken($result->getContinuationToken());
+	        } while($result->getContinuationToken());
+	        echo "<br />";
+
+	        // Get blob.
+	        echo "This is the content of the blob uploaded: ";
+	        $blob = $blobClient->getBlob($containerName, $fileToUpload);
+	        fpassthru($blob->getContentStream());
+	        echo "<br />";
+	    }
+	    catch(ServiceException $e){
+	        // Handle exception based on error codes and messages.
+	        // Error codes and messages are here:
+	        // http://msdn.microsoft.com/library/azure/dd179439.aspx
+	        $code = $e->getCode();
+	        $error_message = $e->getMessage();
+	        echo $code.": ".$error_message."<br />";
+	    }
+	    catch(InvalidArgumentTypeException $e){
+	        // Handle exception based on error codes and messages.
+	        // Error codes and messages are here:
+	        // http://msdn.microsoft.com/library/azure/dd179439.aspx
+	        $code = $e->getCode();
+	        $error_message = $e->getMessage();
+	        echo $code.": ".$error_message."<br />";
+	    }
+		?>
 
 		<table data-toggle="table" data-sort-class="table-active"
 		  data-sortable="true">
