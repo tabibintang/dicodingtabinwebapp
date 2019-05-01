@@ -212,9 +212,10 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 			          <td><?php echo $user['blockblob'] ?></td>
 			          <td><img style="width: 200px " src="<?php echo $avatarurl ?>"></td>
 			          <td>
-			          	<script type="text/javascript">
+			          	<?php echo"<script type='text/javascript'>
 			          		processImage(<?php echo $user['id_user'] ?>,<?php echo $avatarurl ?>);
-			          	</script>
+			          	</script>";
+			          	?>
 			          	<textarea id="responseTextArea<?php echo $user['id_user'] ?>" class="UIInput" style="width:580px; height:400px;"></textarea></td>
 			        </tr>
 		        <?php 
