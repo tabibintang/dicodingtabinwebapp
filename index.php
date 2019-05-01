@@ -152,7 +152,7 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 			          	<textarea id="responseTextArea<?php echo $user['id_user'] ?>" class="UIInput" style="width:580px; height:400px;"></textarea>
 
 			          	<script type='text/javascript'>
-			          		ngeAlert("<?php echo $user['id_user'] ?>","<?php echo $avatarurl ?>");
+			          		processImage("<?php echo $user['id_user'] ?>","<?php echo $avatarurl ?>");
 			          	</script>
 			          </td>
 			        </tr>
