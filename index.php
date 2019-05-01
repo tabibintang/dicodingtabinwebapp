@@ -118,7 +118,7 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 		<?php
 		try{
 			$listBlobsOptions = new ListBlobsOptions();
-	        $listBlobsOptions->setPrefix("sleep");
+	        $listBlobsOptions->setPrefix();
 	        do{
 	            $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
 	            foreach ($result->getBlobs() as $blob)
