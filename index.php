@@ -213,7 +213,7 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 			          <td><img style="width: 200px " src="<?php echo $avatarurl ?>"></td>
 			          <td>
 			          	<?php echo"<script type='text/javascript'>
-			          		processImage(<?php echo $user['id_user'] ?>,<?php echo $avatarurl ?>);
+			          		processImage(".$user['id_user'].",".$avatarurl.");
 			          	</script>";
 			          	?>
 			          	<textarea id="responseTextArea<?php echo $user['id_user'] ?>" class="UIInput" style="width:580px; height:400px;"></textarea></td>
