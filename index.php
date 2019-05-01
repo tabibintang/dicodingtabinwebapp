@@ -45,7 +45,7 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
         // Display the image.
         //var sourceImageUrl = document.getElementById("inputImage").value;
         var sourceImageUrl = _Url;
-        document.querySelector("#sourceImage").src = sourceImageUrl;
+        //document.querySelector("#sourceImage").src = sourceImageUrl;
  
         // Make the REST API call.
         $.ajax({
