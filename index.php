@@ -152,7 +152,7 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 	// some HTML 
 	foreach($blobs as $blob) 
 	{ 
-	    print("'".$blob->name."'>".$blob->name." "); 
+	    echo"'".$blob->name."'>".$blob->name." "; 
 	}
 	// $listBlobsOptions = new ListBlobsOptions();
 	// $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
