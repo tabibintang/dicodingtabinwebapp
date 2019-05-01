@@ -144,7 +144,7 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 			          <td><?php echo $user['jobposition'] ?></td>
 			          <td><?php echo $user['createddate'] ?></td>
 			          <td><?php echo $user['blockblob'] ?></td>
-			          <td><img src="<?php echo 'https://dicodingtabinstorage.blob.core.windows.net/$user[blockblob]/$user[avatar]'; ?>"></td>
+			          <td><img src="<?php echo "https://dicodingtabinstorage.blob.core.windows.net/".$user['blockblob']."/".$user['avatar]; ?>"></td>
 			          <td></td>
 			        </tr>
 		        <?php 
