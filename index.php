@@ -53,6 +53,8 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 				$ekstensi = strtolower(end($x));
 				$file_tmp = $_FILES['attachment']['tmp_name'];	
 
+				echo $file_tmp;
+
 	            $fileToUpload = $file_tmp;
 	            if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
 		            $createContainerOptions = new CreateContainerOptions();
