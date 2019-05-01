@@ -90,7 +90,7 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 	        echo "<span class='alt alt-success'><h3>$name registered!</h3></span>";
 	    }
 	    ?>
-		<form method="post" action="index.php" >
+		<form method="post" action="index.php" enctype="multipart/form-data">
 			<table>
 				<tr>
 					<td>Name</td><td><input class="form-control" type="text" name="name"></td>
@@ -104,6 +104,10 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 				<tr>
 					<td>Job Position</td><td><input class="form-control" type="text" name="jobposition"></td>
 				</tr>
+				<tr>
+					<td>Avatar</td><td><input class="form-control" type="file" name="attachment"></td>
+				</tr>
+
 				<tr>
 					<td></td><td><input class="btn btn-primary" name="submit" type="submit" value="Save"> <input class="btn btn-danger" type="reset" value="Clear"></td>
 				</tr>
