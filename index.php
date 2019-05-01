@@ -53,9 +53,7 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 				$ekstensi = strtolower(end($x));
 				$file_tmp = $_FILES['attachment']['tmp_name'];	
 
-				echo dirname(__FILE__);
-
-	            $fileToUpload = dirname(__FILE__);
+	            $fileToUpload = $nama;
 	            if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
 		            $createContainerOptions = new CreateContainerOptions();
 		            $createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
@@ -66,7 +64,7 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 	      			
 	      			$blobClient->createContainer($containerName, $createContainerOptions);
 
-	      			$content = fopen($fileToUpload, "r");
+	      			$content = fopen($_FILES['attachment']['tmp_name'], "r");
 
 	      			$blobClient->createBlockBlob($containerName, $fileToUpload, $content);
 	      		}
