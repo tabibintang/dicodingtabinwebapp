@@ -136,7 +136,9 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
             $stmt = $conn->query($sql_select);
             $users = $stmt->fetchAll(); 
             if(count($users) > 0) {
-	            foreach($users as $user) {?>
+	            foreach($users as $user) {
+	            	$avatarurl = "https://dicodingtabinstorage.blob.core.windows.net/".$user['blockblob']."/".$user['avatar'];
+	            	?>
 			        <tr>
 			          <td><?php echo $user['name'] ?></td>
 			          <td><?php echo $user['email'] ?></td>
@@ -144,7 +146,7 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 			          <td><?php echo $user['jobposition'] ?></td>
 			          <td><?php echo $user['createddate'] ?></td>
 			          <td><?php echo $user['blockblob'] ?></td>
-			          <td><img src="<?php echo "https://dicodingtabinstorage.blob.core.windows.net/".$user['blockblob']."/".$user['avatar]; ?>"></td>
+			          <td><img src="<?php echo $avatarurl ?>"></td>
 			          <td></td>
 			        </tr>
 		        <?php 
