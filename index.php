@@ -12,10 +12,10 @@
 		<?php
 		date_default_timezone_set("Asia/Bangkok");
 
-	    $host = "dicodingtabinwebappserver.database.windows.net";
-	    $user = "dicodingtabin";
+	    $host = "dicodingtabinserver.database.windows.net";
+	    $user = "tabibintang";
 	    $pass = "B1nt4ngTBP!";
-	    $db = "dicodingtabindb";
+	    $db = "dicodingtabindb2";
 
 	    try {
 	        $conn = new PDO("sqlsrv:server = $host; Database = $db", $user, $pass);
