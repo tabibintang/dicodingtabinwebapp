@@ -125,8 +125,8 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 				<th data-field="E-Mail" data-sortable="true">E-Mail</th>
 				<th data-field="Birthdate" data-sortable="true">Birthdate</th>
 				<th data-field="Job Position" data-sortable="true">Job Position</th>
-				<th data-field="Added" data-sortable="true">Added</th>
-				<th data-field="BlockBlob" data-sortable="true">BlockBlob</th>
+				<!-- <th data-field="Added" data-sortable="true">Added</th>
+				<th data-field="BlockBlob" data-sortable="true">BlockBlob</th> -->
 				<th data-field="Avatar" data-sortable="true">Avatar</th>
 				<th data-field="Analize" data-sortable="true">Analize</th>
 	        </tr>
@@ -145,8 +145,8 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 			          <td><?php echo $user['email'] ?></td>
 			          <td><?php echo $user['birthdate'] ?></td>
 			          <td><?php echo $user['jobposition'] ?></td>
-			          <td><?php echo $user['createddate'] ?></td>
-			          <td><?php echo $user['blockblob'] ?></td>
+			          <!-- <td><?php echo $user['createddate'] ?></td>
+			          <td><?php echo $user['blockblob'] ?></td> -->
 			          <td><img style="width: 200px " src="<?php echo $avatarurl ?>"></td>
 			          <td>
 			          	<textarea id="responseTextArea<?php echo $user['id_user'] ?>" class="UIInput" style="width:580px; height:400px;"></textarea>
