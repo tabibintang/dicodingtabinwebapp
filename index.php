@@ -1,3 +1,13 @@
+<?php
+require_once 'vendor/autoload.php';
+require_once "./random_string.php";
+
+use MicrosoftAzure\Storage\Blob\BlobRestProxy;
+use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
+use MicrosoftAzure\Storage\Blob\Models\ListBlobsOptions;
+use MicrosoftAzure\Storage\Blob\Models\CreateContainerOptions;
+use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,9 +27,14 @@
 	    $pass = "B1nt4ngTBP!";
 	    $db = "dicodingtabindb2";
 
+	    $connectionString = "DefaultEndpointsProtocol=https;AccountName=dicodingtabinstorage;AccountKey=RwfyAZUkMIefrjnka2F7a/tDi+Jpg3lekzpYIh2Ksjy46V62eQe/VdV+wp4U/rVGM7ejhzR+DZREqo0B7uiZ1w==;EndpointSuffix=core.windows.net";
+
 	    try {
 	        $conn = new PDO("sqlsrv:server = $host; Database = $db", $user, $pass);
 	        $conn->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION );
+
+	        $blobClient = BlobRestProxy::createBlobService($connectionString);
+
 	    } catch(Exception $e) {
 	        echo "Failed: " . $e;
 	    }
@@ -31,8 +46,31 @@
 	            $job = $_POST['jobposition'];
 	            $birthdate = $_POST['birthdate'];
 	            $date = date("Y-m-d H:i:s");
+
+				$nama = $_FILES['attachment']['name'];
+				$ekstensi_diperbolehkan	= array('bmp','png','jpg','jpeg');
+				$x = explode('.', $nama);
+				$ekstensi = strtolower(end($x));
+				$file_tmp = $_FILES['attachment']['tmp_name'];	
+
+	            $fileToUpload = $file_tmp;
+	            if(in_array($ekstensi, $ekstensi_diperbolehkan) === true){
+		            $createContainerOptions = new CreateContainerOptions();
+		            $createContainerOptions->setPublicAccess(PublicAccessType::CONTAINER_AND_BLOBS);
+		            $createContainerOptions->addMetaData("key1", "value1");
+	    			$createContainerOptions->addMetaData("key2", "value2");
+
+	      			$containerName = "blockblobs".generateRandomString();
+	      			
+	      			$blobClient->createContainer($containerName, $createContainerOptions);
+
+	      			$content = fopen($fileToUpload, "r");
+
+	      			$blobClient->createBlockBlob($containerName, $fileToUpload, $content);
+	      		}
+
 	            // Insert data
-	            $sql_insert = "INSERT INTO users (name, email, jobposition, birthdate, createddate) 
+	            $sql_insert = "INSERT INTO users (name, email, jobposition, birthdate, createddate, avatar, blockblob) 
 	                        VALUES (?,?,?,?,?)";
 	            $stmt = $conn->prepare($sql_insert);
 	            $stmt->bindValue(1, $name);
@@ -40,7 +78,11 @@
 	            $stmt->bindValue(3, $job);
 	            $stmt->bindValue(4, $birthdate);
 	            $stmt->bindValue(5, $date);
+	            $stmt->bindValue(6, $nama);
+	            $stmt->bindValue(7, $containerName);
 	            $stmt->execute();
+
+	            
 	        } catch(Exception $e) {
 	            echo "Failed: " . $e;
 	        }
