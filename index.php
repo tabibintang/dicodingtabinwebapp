@@ -115,44 +115,6 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 		</form>
 
 		<hr>
-		<?php
-		try{
-			$listBlobsOptions = new ListBlobsOptions();
-	        $listBlobsOptions->setPrefix();
-	        do{
-	            $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
-	            foreach ($result->getBlobs() as $blob)
-	            {
-	                echo $blob->getName().": ".$blob->getUrl()."<br />";
-	            }
-	        
-	            $listBlobsOptions->setContinuationToken($result->getContinuationToken());
-	        } while($result->getContinuationToken());
-	        echo "<br />";
-
-	        // Get blob.
-	        echo "This is the content of the blob uploaded: ";
-	        $blob = $blobClient->getBlob($containerName, $fileToUpload);
-	        fpassthru($blob->getContentStream());
-	        echo "<br />";
-	    }
-	    catch(ServiceException $e){
-	        // Handle exception based on error codes and messages.
-	        // Error codes and messages are here:
-	        // http://msdn.microsoft.com/library/azure/dd179439.aspx
-	        $code = $e->getCode();
-	        $error_message = $e->getMessage();
-	        echo $code.": ".$error_message."<br />";
-	    }
-	    catch(InvalidArgumentTypeException $e){
-	        // Handle exception based on error codes and messages.
-	        // Error codes and messages are here:
-	        // http://msdn.microsoft.com/library/azure/dd179439.aspx
-	        $code = $e->getCode();
-	        $error_message = $e->getMessage();
-	        echo $code.": ".$error_message."<br />";
-	    }
-		?>
 
 		<table data-toggle="table" data-sort-class="table-active"
 		  data-sortable="true">
@@ -163,6 +125,9 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 				<th data-field="Birthdate" data-sortable="true">Birthdate</th>
 				<th data-field="Job Position" data-sortable="true">Job Position</th>
 				<th data-field="Added" data-sortable="true">Added</th>
+				<th data-field="BlockBlob" data-sortable="true">BlockBlob</th>
+				<th data-field="Avatar" data-sortable="true">Avatar</th>
+				<th data-field="Analize" data-sortable="true">Analize</th>
 	        </tr>
 	      </thead>
 	      <tbody>
@@ -178,6 +143,9 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 			          <td><?php echo $user['birthdate'] ?></td>
 			          <td><?php echo $user['jobposition'] ?></td>
 			          <td><?php echo $user['createddate'] ?></td>
+			          <td><?php echo $user['blockblob'] ?></td>
+			          <td><img src="<?php echo 'https://dicodingtabinstorage.blob.core.windows.net/$user[blockblob]/$user[avatar]'; ?>"></td>
+			          <td></td>
 			        </tr>
 		        <?php 
 		    	}
