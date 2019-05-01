@@ -148,22 +148,28 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 	    </table>
 	</div>
 	<?php
-	$listBlobsOptions = new ListBlobsOptions();
-	$result = $blobClient->listBlobs($containerName, $listBlobsOptions);
-	    foreach ($result->getBlobs() as $blob)
-	    {
-	        echo $blob->getName().": ".$blob->getUrl()."<br />";
-	    }
+	$blobs = $storageClient->listBlobs($containers[0]->name); 
+	// some HTML 
+	foreach($blobs as $blob) 
+	{ 
+	    print("'".$blob->name."'>".$blob->name." "); 
+	}
+	// $listBlobsOptions = new ListBlobsOptions();
+	// $result = $blobClient->listBlobs($containerName, $listBlobsOptions);
+	//     foreach ($result->getBlobs() as $blob)
+	//     {
+	//         echo $blob->getName().": ".$blob->getUrl()."<br />";
+	//     }
 
-	    $listBlobsOptions->setContinuationToken($result->getContinuationToken());
-	} while($result->getContinuationToken());
-	echo "<br />";
+	//     $listBlobsOptions->setContinuationToken($result->getContinuationToken());
+	// } while($result->getContinuationToken());
+	// echo "<br />";
 
-    // Get blob.
-    echo "This is the content of the blob uploaded: ";
-    $blob = $blobClient->getBlob($containerName, $fileToUpload);
-    fpassthru($blob->getContentStream());
-    echo "<br />";
+ //    // Get blob.
+ //    echo "This is the content of the blob uploaded: ";
+ //    $blob = $blobClient->getBlob($containerName, $fileToUpload);
+ //    fpassthru($blob->getContentStream());
+ //    echo "<br />";
 
 	?>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
