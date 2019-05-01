@@ -71,7 +71,7 @@ use MicrosoftAzure\Storage\Blob\Models\PublicAccessType;
 
 	            // Insert data
 	            $sql_insert = "INSERT INTO users (name, email, jobposition, birthdate, createddate, avatar, blockblob) 
-	                        VALUES (?,?,?,?,?)";
+	                        VALUES (?,?,?,?,?,?,?)";
 	            $stmt = $conn->prepare($sql_insert);
 	            $stmt->bindValue(1, $name);
 	            $stmt->bindValue(2, $email);
